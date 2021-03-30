@@ -23,7 +23,7 @@ void checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double
 
   BreachType breachType = classifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
 
-  tempAlertCall[alertTarget](breachType);
+  tempAlertFunc[alertTarget](breachType);
 
 }
 
@@ -33,7 +33,8 @@ void sendToController(BreachType breachType)
   printf("%x : %x\n", header, breachType);
 }
 
-void sendToEmail(BreachType breachType) {
+void sendToEmail(BreachType breachType) 
+{
   const char* recepient = "a.b@c.com";
   switch(breachType) 
   {
@@ -44,8 +45,6 @@ void sendToEmail(BreachType breachType) {
     case TOO_HIGH:
       printf("To: %s\n", recepient);
       printf("Hi, the temperature is too high\n");
-      break;
-    case NORMAL:
-      break;
+    break;
   }
 }

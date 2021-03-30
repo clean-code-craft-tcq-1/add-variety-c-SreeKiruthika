@@ -3,6 +3,9 @@
 #include "test/catch.hpp"
 #include "typewise-alert.h"
 
-TEST_CASE("infers the breach according to limits") {
-  REQUIRE(inferBreach(12, 20, 30) == TOO_LOW);
+TEST_CASE("infers the breach according to limits")
+{
+	BatteryCharacter batteryChar = {PASSIVE_COOLING, "BOSCH"};
+	checkAndAlert(batteryChar, TO_CONTROLLER, 30);
+  REQUIRE(classifyTemperatureBreach(PASSIVE_COOLING, 30) == NORMAL);
 }

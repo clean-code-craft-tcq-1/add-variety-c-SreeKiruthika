@@ -38,6 +38,6 @@ BatteryCoolingTypeLimit tempLimits[]={{PASSIVE_COOLING,0,35},{HI_ACTIVE_COOLING,
 
 void checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
 
-void (*tempAlerter_funcPtr)();
+typedef void (*tempAlerter_funcPtr)();
 void sendToController(BreachType breachType);
 void sendToEmail(BreachType breachType);
