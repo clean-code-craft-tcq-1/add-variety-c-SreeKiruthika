@@ -13,7 +13,7 @@ TEST_CASE("infers the breach Passive cooling - normal")
 TEST_CASE("infers the breach medium active cooling - normal")
 {
 	BatteryCharacter batteryChar = {MED_ACTIVE_COOLING, "BOSCH"};
-	checkAndAlert(TO_CONTROLLER,batteryChar, 15);
+	checkAndAlert(TO_EMAIL,batteryChar, 15);
   REQUIRE(classifyTemperatureBreach(MED_ACTIVE_COOLING, 15) == NORMAL);
 }
 
