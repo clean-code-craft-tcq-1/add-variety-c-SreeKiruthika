@@ -59,7 +59,7 @@ TEST_CASE("infers the breach High active cooling - high")
   REQUIRE(classifyTemperatureBreach(HI_ACTIVE_COOLING, 41) == TOO_HIGH);
 }
 
-TEST_CASE("infers the breach Passive cooling - low")
+TEST_CASE("infers the breach Passive cooling - high")
 {
 	BatteryCharacter batteryChar = {PASSIVE_COOLING, "BOSCH"};
 	checkAndAlert(TO_EMAIL,batteryChar, 100);
