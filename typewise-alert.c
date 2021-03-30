@@ -1,13 +1,16 @@
 #include "typewise-alert.h"
 #include <stdio.h>
 
+BatteryCoolingTypeLimit tempLimits[]={{PASSIVE_COOLING,0,35},{HI_ACTIVE_COOLING,0,45},{MED_ACTIVE_COOLING,0,40}};
 tempAlerter_funcPtr tempAlertFunc[]= {sendToController,sendToEmail};
- 
+
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
-  if(value < lowerLimit) {
+  if(value < lowerLimit) 
+  {
     return TOO_LOW;
   }
-  if(value > upperLimit) {
+  if(value > upperLimit) 
+  {
     return TOO_HIGH;
   }
   return NORMAL;
