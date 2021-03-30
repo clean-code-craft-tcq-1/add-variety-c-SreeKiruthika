@@ -6,6 +6,6 @@
 TEST_CASE("infers the breach according to limits")
 {
 	BatteryCharacter batteryChar = {PASSIVE_COOLING, "BOSCH"};
-	checkAndAlert(batteryChar, TO_CONTROLLER, 30);
+	checkAndAlert(TO_CONTROLLER,batteryChar, 30);
   REQUIRE(classifyTemperatureBreach(PASSIVE_COOLING, 30) == NORMAL);
 }
