@@ -65,7 +65,7 @@ TEST_CASE("When breach infered is TOO_LOW and CONTROLLER alert triggered")
 TEST_CASE("When breach infered is TOO_HIGH and CONTROLLER alert triggered")
 {
   BatteryCharacter batteryChar = {PASSIVE_COOLING, "BOSCH_RBEI"};	
-  REQUIRE(sendToEmail(NORMAL, batteryChar, 60) == ALERT_SUCCESS);
+  REQUIRE(checkAndAlert(TO_CONTROLLER, batteryChar, 60) == ALERT_SUCCESS);
 }
 
 /*To validate invalid breach type passed to ALERT via mail and console */
