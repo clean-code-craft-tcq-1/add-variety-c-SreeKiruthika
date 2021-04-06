@@ -82,7 +82,7 @@ int sendToEmail(BreachType breachType)
 *Param     : breachType  - the type of breach occured in the system                
 *Return    : Returns if alert is success or not
 *****************************************************************************************/
-int AlertTarget sendToConsole(BreachType breachType) 
+int sendToConsole(BreachType breachType) 
 {
   int retval = ALERT_FAIL;
   switch(breachType) 

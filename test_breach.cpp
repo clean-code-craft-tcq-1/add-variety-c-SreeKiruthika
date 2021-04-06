@@ -23,7 +23,7 @@ TEST_CASE("infers the breach High active cooling - high")
 TEST_CASE("When INVALID target is sent")
 {
   BatteryCharacter batteryChar = {HI_ACTIVE_COOLING, "BOSCH_RBEI"};	
-  REQUIRE(checkAndAlert(4, batteryChar, 47) == INVALID_TARGET);
+  REQUIRE(checkAndAlert(NUM_OF_TARGETS, batteryChar, 47) == INVALID_TARGET);
 }
 
 TEST_CASE("When breach infered is NORMAL and no alert is needed")
