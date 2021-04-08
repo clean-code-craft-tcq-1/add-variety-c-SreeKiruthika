@@ -29,48 +29,48 @@ TEST_CASE("When INVALID target is sent")
 TEST_CASE("When breach infered is NORMAL and no alert is needed")
 {
   BatteryCharacter batteryChar = {MED_ACTIVE_COOLING, "BOSCH_RBEI"};	
-  REQUIRE(checkAndAlert(TO_EMAIL, batteryChar, 30) == ALERT_NOTNEEDED);
+  REQUIRE(checkAndAlert(TO_EMAIL, batteryChar, 30) == NO_BREACH);
 }
 
 TEST_CASE("When breach infered is TOO_LOW and EMAIL alert triggered")
 {
   BatteryCharacter batteryChar = {MED_ACTIVE_COOLING, "BOSCH_RBEI"};	
-  REQUIRE(checkAndAlert(TO_EMAIL, batteryChar, -1) == ALERT_SUCCESS);
+  REQUIRE(checkAndAlert(TO_EMAIL, batteryChar, -1) == BREACH_ALERTED);
 }
 
 TEST_CASE("When breach infered is TOO_HIGH and EMAIL alert triggered")
 {
   BatteryCharacter batteryChar = {HI_ACTIVE_COOLING, "BOSCH_RBEI"};	
-  REQUIRE(checkAndAlert(TO_EMAIL, batteryChar, 70) == ALERT_SUCCESS);
+  REQUIRE(checkAndAlert(TO_EMAIL, batteryChar, 70) == BREACH_ALERTED);
 }
 
 TEST_CASE("When breach infered is TOO_LOW and CONSOLE alert triggered")
 {
   BatteryCharacter batteryChar = {MED_ACTIVE_COOLING, "BOSCH_RBEI"};	
-  REQUIRE(checkAndAlert(TO_CONSOLE, batteryChar, -5) == ALERT_SUCCESS);
+  REQUIRE(checkAndAlert(TO_CONSOLE, batteryChar, -5) == BREACH_ALERTED);
 }
 
 TEST_CASE("When breach infered is TOO_HIGH and CONSOLE alert triggered")
 {
   BatteryCharacter batteryChar = {PASSIVE_COOLING, "BOSCH_RBEI"};	
-  REQUIRE(checkAndAlert(TO_CONSOLE, batteryChar, 70) == ALERT_SUCCESS);
+  REQUIRE(checkAndAlert(TO_CONSOLE, batteryChar, 70) == BREACH_ALERTED);
 }
 
 TEST_CASE("When breach infered is TOO_LOW and CONTROLLER alert triggered")
 {
   BatteryCharacter batteryChar = {MED_ACTIVE_COOLING, "BOSCH_RBEI"};	
-  REQUIRE(checkAndAlert(TO_CONTROLLER, batteryChar, -100) == ALERT_SUCCESS);
+  REQUIRE(checkAndAlert(TO_CONTROLLER, batteryChar, -100) == BREACH_ALERTED);
 }
 
 TEST_CASE("When breach infered is TOO_HIGH and CONTROLLER alert triggered")
 {
   BatteryCharacter batteryChar = {PASSIVE_COOLING, "BOSCH_RBEI"};	
-  REQUIRE(checkAndAlert(TO_CONTROLLER, batteryChar, 60) == ALERT_SUCCESS);
+  REQUIRE(checkAndAlert(TO_CONTROLLER, batteryChar, 60) == BREACH_ALERTED);
 }
 
 /*To validate invalid breach type passed to ALERT via mail and console */
 TEST_CASE("When breach infered is NORMAL (this is used as invalid alert value) and alert is  triggered")
 {
-  REQUIRE(sendToConsole(NORMAL) == ALERT_FAIL);	
-  REQUIRE(sendToEmail(NORMAL) == ALERT_FAIL);
+  REQUIRE(sendToConsole(NORMAL) == BREACH_ALERTFAIL);	
+  REQUIRE(sendToEmail(NORMAL) == BREACH_ALERTFAIL);
 }

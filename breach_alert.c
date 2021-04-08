@@ -10,12 +10,12 @@ tempAlerter_funcPtr tempAlertFunc[]= {sendToController,sendToEmail,sendToConsole
 *Param     : alertTarget      - the alerting target type
              batteryCharacter - The battery characteristing defining strcuture
 			 temperatureInC   - the measured temperature value                         
-*Return    : Returns alert check status (ALERT_FAIL by default if not evaluated)
+*Return    : Returns alert check status (BREACH_ALERTFAIL by default if not evaluated)
 *****************************************************************************************/
 int checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC) 
 {
 
-  int retval = ALERT_FAIL;
+  int retval = BREACH_ALERTFAIL;
 
   if(alertTarget >= NUM_OF_TARGETS)
   {
@@ -31,7 +31,7 @@ int checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double 
     }
     else
     {
-    	retval = ALERT_NOTNEEDED;
+    	retval = NO_BREACH;
     }
   }
   return retval;
@@ -48,7 +48,7 @@ int sendToController(BreachType breachType)
   int retval;
   const unsigned short header = 0xfeed;
   printf("%x : %x\n", header, breachType);
-  retval = ALERT_SUCCESS;
+  retval = BREACH_ALERTED;
   return retval;
 }
 
@@ -60,18 +60,18 @@ int sendToController(BreachType breachType)
 int sendToEmail(BreachType breachType) 
 {
   const char* recepient = "a.b@c.com";
-  int retval = ALERT_FAIL;
+  int retval = BREACH_ALERTFAIL;
   switch(breachType) 
   {
     case TOO_LOW:
       printf("To: %s\n", recepient);
       printf("Hi, the temperature is too low\n");
-	  retval = ALERT_SUCCESS;
+	  retval = BREACH_ALERTED;
       break;
     case TOO_HIGH:
       printf("To: %s\n", recepient);
       printf("Hi, the temperature is too high\n");
-	  retval = ALERT_SUCCESS;
+	  retval = BREACH_ALERTED;
     break;
   }
   return retval;
@@ -84,16 +84,16 @@ int sendToEmail(BreachType breachType)
 *****************************************************************************************/
 int sendToConsole(BreachType breachType) 
 {
-  int retval = ALERT_FAIL;
+  int retval = BREACH_ALERTFAIL;
   switch(breachType) 
   {
     case TOO_LOW:
       printf("Hi, the temperature is too low\n");
-	  retval = ALERT_SUCCESS;
+	  retval = BREACH_ALERTED;
       break;
     case TOO_HIGH:
       printf("Hi, the temperature is too high\n");
-	  retval = ALERT_SUCCESS;
+	  retval = BREACH_ALERTED;
     break;
   }
   return retval;

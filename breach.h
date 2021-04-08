@@ -1,8 +1,8 @@
 #pragma once
 
-#define ALERT_FAIL 0
-#define ALERT_SUCCESS 1
-#define ALERT_NOTNEEDED 2
+#define BREACH_ALERTFAIL 0
+#define BREACH_ALERTED 1
+#define NO_BREACH 2
 #define INVALID_TARGET 255
 
 typedef enum {
