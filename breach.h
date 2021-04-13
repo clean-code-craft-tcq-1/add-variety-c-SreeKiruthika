@@ -52,6 +52,3 @@ typedef int (*tempAlerter_funcPtr)(BreachType breachType);
 int sendToController(BreachType breachType);
 int sendToEmail(BreachType breachType);
 int sendToConsole(BreachType breachType);
-
-extern int libfunc_MailReturn;
-extern int libfunc_PinReturn;

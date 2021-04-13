@@ -1,12 +1,11 @@
 
-#include "breach.h"
+#include "libfunc.h"
 
 
 /*Dummy library function for analog pin set function */
 int AnalogPin_Set(unsigned short pin_number, float volt)
 {
-	int retval= libfunc_PinReturn;
-	return retval;
+	return libfunc_PinReturn;
 }
 
 
