@@ -6,8 +6,6 @@
 #define MAIL_SENT           1
 #define MAIL_NOTSENT        0
 
-extern int libfunc_PinReturn = OUTPIN_SET;
-extern int libfunc_MailReturn = MAIL_SENT;
 
 int AnalogPin_Set(unsigned short pin_number, float volt);
 
