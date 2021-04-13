@@ -72,15 +72,9 @@ int sendToEmail(BreachType breachType)
   const char* recepient = "a.b@c.com";
   const char* sender = "z.y@x.com";
   int mail_status = MAIL_NOTSENT;
+  char message[2][30]={"Breach Too Low", "Breach Too high"};
   
-    if (breachType == TOO_LOW) 
-	{
-	  mail_status =  Email_Send(sender, recepient, "Hi, the temperature is too low\n");   	  
-	}
-    else if (breachType == TOO_HIGH)
-	{
-        mail_status =  Email_Send(sender, recepient, "Hi, the temperature is too high\n");
-	}
+  mail_status =  Email_Send(sender, recepient, message[breachType-1]);   	  
 	
   return ((mail_status == MAIL_SENT) ? BREACH_ALERTED : BREACH_ALERTFAIL);
 
