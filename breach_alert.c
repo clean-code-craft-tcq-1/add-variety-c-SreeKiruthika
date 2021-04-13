@@ -48,9 +48,9 @@ int sendToController(BreachType breachType)
 {
   float alert_voltage[NUM_BREACH]={0,3.2,5};
   
-  const unsigned short pin_number = TEMP_ALERT_OUTPIN;
+  int pin_status;
   
-  pin_status = DigitalPin_Set(TEMP_ALERT_OUTPIN, alert_voltage[breachtype]);
+  pin_status = AnalogPin_Set(TEMP_ALERT_OUTPIN, alert_voltage[breachtype]);
   
   if(pin_status == OUTPIN_SET)
   {
@@ -71,19 +71,20 @@ int sendToEmail(BreachType breachType)
 {
   const char* recepient = "a.b@c.com";
   const char* sender = "z.y@x.com";
-  int retval;
+  int retval = BREACH_ALERTFAIL;
   int mail_status = MAIL_NOTSENT;
+  
   switch(breachType) 
   {
     case TOO_LOW:
-	  mail_status = email_send(sender, recepient, "Hi, the temperature is too low\n");      
-      break;
+	  mail_status =  email_send(sender, recepient, "Hi, the temperature is too low\n");   
+      return ((mail_status == MAIL_SENT) ? BREACH_ALERTED : BREACH_ALERTFAIL); 	  
+    break;
     case TOO_HIGH:
       mail_status =  email_send(sender, recepient, "Hi, the temperature is too high\n");
+	  return ((mail_status == MAIL_SENT) ? BREACH_ALERTED : BREACH_ALERTFAIL); 
     break;
   }
-  
-  retval = (mail_status == MAIL_SENT) ? BREACH_ALERTED : BREACH_ALERTFAIL;
   
   return retval;
 }

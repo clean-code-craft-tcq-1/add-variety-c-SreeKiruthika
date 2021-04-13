@@ -8,4 +8,4 @@
 
 int AnalogPin_Set(unsigned short pin_number, float volt);
 
-int email_send (char* sender,char* recepient, char* message_body);
+int email_send (const char* sender,const char* recepient, char* message_body);

@@ -1,5 +1,8 @@
 #pragma once
 
+#include "libfunc.h"
+#include "string.h"
+
 #define BREACH_ALERTFAIL 0
 #define BREACH_ALERTED 1
 #define NO_BREACH 2
