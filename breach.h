@@ -5,6 +5,8 @@
 #define NO_BREACH 2
 #define INVALID_TARGET 255
 
+#define TEMP_ALERT_OUTPIN 0xFEED
+
 typedef enum {
   PASSIVE_COOLING,
   HI_ACTIVE_COOLING,
@@ -15,6 +17,7 @@ typedef enum {
   NORMAL,
   TOO_LOW,
   TOO_HIGH,
+  NUM_BREACH
 } BreachType;
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit);

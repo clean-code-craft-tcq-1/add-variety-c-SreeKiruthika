@@ -1,4 +1,5 @@
 #include "breach.h"
+#include "libfunc.h"
 #include <stdio.h>
 
 
@@ -41,39 +42,49 @@ int checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double 
 /****************************************************************************************
 *Func desc : This function does controller alert based on passed breach type
 *Param     : breachType  - the type of breach occured in the system                
-*Return    : None
+*Return    : Returns if alert is success or not
 *****************************************************************************************/
 int sendToController(BreachType breachType) 
 {
-  int retval;
-  const unsigned short header = 0xfeed;
-  printf("%x : %x\n", header, breachType);
-  retval = BREACH_ALERTED;
-  return retval;
+  float alert_voltage[NUM_BREACH]={0,3.2,5};
+  
+  const unsigned short pin_number = TEMP_ALERT_OUTPIN;
+  
+  pin_status = DigitalPin_Set(TEMP_ALERT_OUTPIN, alert_voltage[breachtype]);
+  
+  if(pin_status == OUTPIN_SET)
+  {
+     return BREACH_ALERTED;
+  }
+  else
+  {
+	 return BREACH_ALERTFAIL;
+  }
 }
 
 /****************************************************************************************
 *Func desc : This function does email alert based on passed breach type
 *Param     : breachType  - the type of breach occured in the system                
-*Return    : None
+*Return    : Returns if alert is success or not
 *****************************************************************************************/
 int sendToEmail(BreachType breachType) 
 {
   const char* recepient = "a.b@c.com";
-  int retval = BREACH_ALERTFAIL;
+  const char* sender = "z.y@x.com";
+  int retval;
+  int mail_status = MAIL_NOTSENT;
   switch(breachType) 
   {
     case TOO_LOW:
-      printf("To: %s\n", recepient);
-      printf("Hi, the temperature is too low\n");
-	  retval = BREACH_ALERTED;
+	  mail_status = email_send(sender, recepient, "Hi, the temperature is too low\n");      
       break;
     case TOO_HIGH:
-      printf("To: %s\n", recepient);
-      printf("Hi, the temperature is too high\n");
-	  retval = BREACH_ALERTED;
+      mail_status =  email_send(sender, recepient, "Hi, the temperature is too high\n");
     break;
   }
+  
+  retval = (mail_status == MAIL_SENT) ? BREACH_ALERTED : BREACH_ALERTFAIL;
+  
   return retval;
 }
 
