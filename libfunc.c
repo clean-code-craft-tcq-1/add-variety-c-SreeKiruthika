@@ -1,9 +1,6 @@
 
 #include "libfunc.h"
 
-int libfunc_PinReturn = OUTPIN_ERROR;
-int libfunc_MailReturn = MAIL_NOTSENT;
-
 /*Dummy library function for analog pin set function */
 int AnalogPin_Set(unsigned short pin_number, float volt)
 {

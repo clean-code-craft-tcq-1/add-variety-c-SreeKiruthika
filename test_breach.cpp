@@ -3,8 +3,8 @@
 #include "test/catch.hpp"
 #include "breach.h"
 
-libfunc_PinReturn = OUTPIN_SET;
-libfunc_MailReturn = MAIL_SENT;
+int libfunc_PinReturn = OUTPIN_SET;
+int libfunc_MailReturn = MAIL_SENT;
 
 /*test cases for breach check along with different cooling types*/
 TEST_CASE("infers the breach Passive cooling - normal")
