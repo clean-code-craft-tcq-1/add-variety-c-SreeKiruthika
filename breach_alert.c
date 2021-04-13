@@ -1,5 +1,5 @@
 #include "breach.h"
-#include "libfunc.h"
+
 #include <stdio.h>
 
 
@@ -76,10 +76,10 @@ int sendToEmail(BreachType breachType)
   switch(breachType) 
   {
     case TOO_LOW:
-	  mail_status =  email_send(sender, recepient, "Hi, the temperature is too low\n");   	  
+	  mail_status =  Email_Send(sender, recepient, "Hi, the temperature is too low\n");   	  
     break;
     case TOO_HIGH:
-      mail_status =  email_send(sender, recepient, "Hi, the temperature is too high\n");
+      mail_status =  Email_Send(sender, recepient, "Hi, the temperature is too high\n");
 	break;
   }
 
