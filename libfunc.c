@@ -9,7 +9,7 @@ int AnalogPin_Set(unsigned short pin_number, float volt)
 
 
 /*Dummy library function for sending mail */
-int Email_Send(char* sender,char* recepient, char* message_body)
+int Email_Send(const char* sender,const char* recepient, char* message_body)
 {
 	return libfunc_MailReturn;
 }
