@@ -39,28 +39,28 @@ TEST_CASE("When breach infered is NORMAL and no alert is needed")
 TEST_CASE("When breach infered is TOO_LOW and EMAIL alert triggered")
 {
   BatteryCharacter batteryChar = {MED_ACTIVE_COOLING, "BOSCH_RBEI"};
-  int libfunc_MailReturn =  MAIL_SENT; 
+  libfunc_MailReturn =  MAIL_SENT; 
   REQUIRE(checkAndAlert(TO_EMAIL, batteryChar, -1) == BREACH_ALERTED);
 }
 
 TEST_CASE("When breach infered is TOO_HIGH and EMAIL alert triggered")
 {
   BatteryCharacter batteryChar = {HI_ACTIVE_COOLING, "BOSCH_RBEI"};	
-  int libfunc_MailReturn =  MAIL_SENT;
+  libfunc_MailReturn =  MAIL_SENT;
   REQUIRE(checkAndAlert(TO_EMAIL, batteryChar, 70) == BREACH_ALERTED);
 }
 
 TEST_CASE("When breach infered is TOO_HIGH and EMAIL not sent")
 {
   BatteryCharacter batteryChar = {HI_ACTIVE_COOLING, "BOSCH_RBEI"};	
-  int libfunc_MailReturn =  MAIL_NOTSENT;
+  libfunc_MailReturn =  MAIL_NOTSENT;
   REQUIRE(checkAndAlert(TO_EMAIL, batteryChar, 70) == BREACH_ALERTFAIL);
 }
 
 TEST_CASE("When breach infered is TOO_LOW and EMAIL not sent")
 {
   BatteryCharacter batteryChar = {HI_ACTIVE_COOLING, "BOSCH_RBEI"};	
-  int libfunc_MailReturn =  MAIL_NOTSENT;
+  libfunc_MailReturn =  MAIL_NOTSENT;
   REQUIRE(checkAndAlert(TO_EMAIL, batteryChar, -10) == BREACH_ALERTFAIL);
 }
 /*End of EMAIL alert validation */
@@ -83,21 +83,21 @@ TEST_CASE("When breach infered is TOO_HIGH and CONSOLE alert triggered")
 TEST_CASE("When breach infered is TOO_LOW and CONTROLLER alert triggered")
 {
   BatteryCharacter batteryChar = {MED_ACTIVE_COOLING, "BOSCH_RBEI"};	
-  int libfunc_PinReturn = OUTPIN_SET;
+  libfunc_PinReturn = OUTPIN_SET;
   REQUIRE(checkAndAlert(TO_CONTROLLER, batteryChar, -100) == BREACH_ALERTED);
 }
 
 TEST_CASE("When breach infered is TOO_HIGH and CONTROLLER alert triggered")
 {
   BatteryCharacter batteryChar = {PASSIVE_COOLING, "BOSCH_RBEI"};	
-  int libfunc_PinReturn = OUTPIN_SET;
+  libfunc_PinReturn = OUTPIN_SET;
   REQUIRE(checkAndAlert(TO_CONTROLLER, batteryChar, 60) == BREACH_ALERTED);
 }
 
 TEST_CASE("When breach infered is TOO_LOW and CONTROLLER alert failed")
 {
   BatteryCharacter batteryChar = {MED_ACTIVE_COOLING, "BOSCH_RBEI"};	
-  int libfunc_PinReturn = OUTPIN_ERROR;
+  libfunc_PinReturn = OUTPIN_ERROR;
   REQUIRE(checkAndAlert(TO_CONTROLLER, batteryChar, -100) == BREACH_ALERTFAIL);
 }
 /*End of Controller alert validation */
