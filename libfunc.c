@@ -5,7 +5,8 @@
 /*Dummy library function for analog pin set function */
 int AnalogPin_Set(unsigned short pin_number, float volt)
 {
-	return libfunc_PinReturn;
+	int retval= libfunc_PinReturn;
+	return retval;
 }
 
 
